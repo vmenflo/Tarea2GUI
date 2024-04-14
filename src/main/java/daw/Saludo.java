@@ -22,6 +22,7 @@ public class Saludo extends JPanel implements ActionListener {
 
     // Componentes gráficos: un botón y un área de texto
     private JButton boton;
+    private JButton botonApellido;
     private JTextArea texto;
 
     public Saludo() {
@@ -33,22 +34,24 @@ public class Saludo extends JPanel implements ActionListener {
         this.setPreferredSize(new Dimension(600, 200));
 
         // Borde del panel
-        this.setBorder(new TitledBorder("Borde del panel"));
+        this.setBorder(new TitledBorder("Datos"));
 
         // Creamos el botón, con un texto a mostrar
-        boton = new JButton("Saludar");
+        boton = new JButton("Nombre");
+        botonApellido = new JButton("Apellido");
 
         // Creamos el textArea de una fila por 25 columnas
         texto = new JTextArea(1, 25);
 
         // Establecemos el color de fondo del textArea
-        texto.setBackground(Color.green);
+        texto.setBackground(Color.GRAY);
 
         // Posicionamiento de componentes con FlowLayout
         this.setLayout(new FlowLayout());
 
         // Añadimos los componentes al panel
         this.add(boton);
+        this.add(botonApellido);
         this.add(texto);
 
         // Se le indica al objeto boton que escuche eventos tipo click
@@ -56,14 +59,20 @@ public class Saludo extends JPanel implements ActionListener {
         // En este caso se pasa this que es el panel sobre el 
         // que está el botón y que implementa la interfaz ActionListener
         boton.addActionListener(this);
+        botonApellido.addActionListener(this);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        // Este ejemplo es tan básico que no hemos usado el objeto ae
-        // Indicamos el texto que queremos mostrar en el área de texto
+    public void actionPerformed(ActionEvent ae) {
 
-        texto.setText("Hola amigos!!");
+        // Si el botón pulsado es botonSaludar
+        if (ae.getSource() == boton) {
+            texto.setText("VICTOR");
+            texto.setBackground(Color.white);
+        } else {
+            texto.setText("MENA FLORES");
+            texto.setBackground(Color.green);
+        }
     }
 
 }
